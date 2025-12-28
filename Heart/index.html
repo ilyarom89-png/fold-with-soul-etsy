@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fold With Soul • Heart • 19 cm</title>
+<title>Fold With Soul • Heart</title>
 <style>
   :root {
     --bg:#0b1220;
@@ -139,37 +139,37 @@
 <body>
   <div class="wrap">
     <div class="hero">
-      <h1>Fold With Soul Calculator — <span class="mono">Heart</span> <span class="pill">19 cm</span></h1>
+      <h1>Fold With Soul Calculator — <span class="mono" id="patternTitle">Heart</span> <span class="pill" id="sizePill">19 cm</span></h1>
       <p class="sub">
         MMF (Measure • Mark • Fold) • No cutting • No glue<br/>
-        This file already contains the full fold list for the 19 cm version (180 folds).
+        Choose your book height (19 / 21 / 23 cm). The design is always centered.
       </p>
     </div>
 
     <div class="grid">
       <div class="card" id="controls">
         <div class="row">
-          <div style="flex:1; min-width:200px;">
-            <label for="bookPages">My book total pages (optional)</label>
-            <input id="bookPages" inputmode="numeric" placeholder="e.g., 398" />
-          </div>
-          <div style="width:160px;">
-            <label for="align">Alignment</label>
-            <select id="align">
-              <option value="center" selected>Center</option>
-              <option value="top">Start near front</option>
-              <option value="bottom">Start near end</option>
-            </select>
-          </div>
-        </div>
+  <div style="width:160px;">
+    <label for="size">Book height</label>
+    <select id="size">
+      <option value="19" selected>19 cm</option>
+      <option value="21">21 cm</option>
+      <option value="23">23 cm</option>
+    </select>
+  </div>
+  <div style="flex:1; min-width:200px;">
+    <label for="bookPages">My book total pages (optional)</label>
+    <input id="bookPages" inputmode="numeric" placeholder="e.g., 398" />
+  </div>
+</div>
 
         <div class="kpi">
           <div class="box">
-            <div class="val mono" id="kpiFolds">180</div>
+            <div class="val mono" id="kpiFolds">—</div>
             <div class="lbl">Total folds</div>
           </div>
           <div class="box">
-            <div class="val mono" id="kpiPagesNeeded">362</div>
+            <div class="val mono" id="kpiPagesNeeded">—</div>
             <div class="lbl">Pages needed (approx.)</div>
           </div>
           <div class="box">
@@ -184,7 +184,7 @@
 
         <p class="hint">
           We fold on <b>odd pages only</b>: 1, 3, 5...<br/>
-          If your book has more pages than needed, the calculator can center the design by choosing a later start page.
+          If your book has more pages than needed, the calculator automatically centers the design by choosing the correct start page.
         </p>
 
         <div class="row" style="margin-top:10px;">
@@ -199,7 +199,7 @@
             <button class="btn" id="btnPrint">Save as PDF / Print</button>
             <button class="btn secondary" id="btnDownload">Download table (CSV)</button>
           </div>
-          <div class="small" id="status">Loaded: 180 folds • Updated: 2025-12-28</div>
+          <div class="small" id="status">Ready</div>
         </div>
 
         <div style="overflow:auto; max-height:70vh; border-radius:14px;">
@@ -225,8 +225,12 @@
 
 <script>
 const patternName = "Heart";
-const bookHeightCm = 19;
-const foldsData = [{"Fold": 1, "Mark1": 5.6, "Mark2": 6.4}, {"Fold": 2, "Mark1": 5.1, "Mark2": 6.9}, {"Fold": 3, "Mark1": 4.9, "Mark2": 7.2}, {"Fold": 4, "Mark1": 4.7, "Mark2": 7.4}, {"Fold": 5, "Mark1": 4.6, "Mark2": 7.6}, {"Fold": 6, "Mark1": 4.4, "Mark2": 7.8}, {"Fold": 7, "Mark1": 4.3, "Mark2": 8.0}, {"Fold": 8, "Mark1": 4.2, "Mark2": 8.1}, {"Fold": 9, "Mark1": 4.1, "Mark2": 8.3}, {"Fold": 10, "Mark1": 4.0, "Mark2": 8.4}, {"Fold": 11, "Mark1": 3.9, "Mark2": 8.5}, {"Fold": 12, "Mark1": 3.9, "Mark2": 8.6}, {"Fold": 13, "Mark1": 3.8, "Mark2": 8.8}, {"Fold": 14, "Mark1": 3.7, "Mark2": 8.9}, {"Fold": 15, "Mark1": 3.6, "Mark2": 9.0}, {"Fold": 16, "Mark1": 3.6, "Mark2": 9.1}, {"Fold": 17, "Mark1": 3.5, "Mark2": 9.2}, {"Fold": 18, "Mark1": 3.5, "Mark2": 9.3}, {"Fold": 19, "Mark1": 3.4, "Mark2": 9.4}, {"Fold": 20, "Mark1": 3.4, "Mark2": 9.5}, {"Fold": 21, "Mark1": 3.3, "Mark2": 9.6}, {"Fold": 22, "Mark1": 3.3, "Mark2": 9.7}, {"Fold": 23, "Mark1": 3.2, "Mark2": 9.8}, {"Fold": 24, "Mark1": 3.2, "Mark2": 9.9}, {"Fold": 25, "Mark1": 3.1, "Mark2": 10.0}, {"Fold": 26, "Mark1": 3.1, "Mark2": 10.1}, {"Fold": 27, "Mark1": 3.1, "Mark2": 10.2}, {"Fold": 28, "Mark1": 3.0, "Mark2": 10.3}, {"Fold": 29, "Mark1": 3.0, "Mark2": 10.4}, {"Fold": 30, "Mark1": 3.0, "Mark2": 10.4}, {"Fold": 31, "Mark1": 2.9, "Mark2": 10.5}, {"Fold": 32, "Mark1": 2.9, "Mark2": 10.6}, {"Fold": 33, "Mark1": 2.9, "Mark2": 10.7}, {"Fold": 34, "Mark1": 2.9, "Mark2": 10.8}, {"Fold": 35, "Mark1": 2.9, "Mark2": 10.9}, {"Fold": 36, "Mark1": 2.8, "Mark2": 10.9}, {"Fold": 37, "Mark1": 2.8, "Mark2": 11.0}, {"Fold": 38, "Mark1": 2.8, "Mark2": 11.1}, {"Fold": 39, "Mark1": 2.8, "Mark2": 11.2}, {"Fold": 40, "Mark1": 2.8, "Mark2": 11.3}, {"Fold": 41, "Mark1": 2.8, "Mark2": 11.4}, {"Fold": 42, "Mark1": 2.8, "Mark2": 11.5}, {"Fold": 43, "Mark1": 2.8, "Mark2": 11.5}, {"Fold": 44, "Mark1": 2.8, "Mark2": 11.6}, {"Fold": 45, "Mark1": 2.7, "Mark2": 11.7}, {"Fold": 46, "Mark1": 2.7, "Mark2": 11.8}, {"Fold": 47, "Mark1": 2.7, "Mark2": 11.9}, {"Fold": 48, "Mark1": 2.7, "Mark2": 11.9}, {"Fold": 49, "Mark1": 2.7, "Mark2": 12.0}, {"Fold": 50, "Mark1": 2.7, "Mark2": 12.1}, {"Fold": 51, "Mark1": 2.7, "Mark2": 12.2}, {"Fold": 52, "Mark1": 2.8, "Mark2": 12.3}, {"Fold": 53, "Mark1": 2.8, "Mark2": 12.4}, {"Fold": 54, "Mark1": 2.8, "Mark2": 12.5}, {"Fold": 55, "Mark1": 2.8, "Mark2": 12.5}, {"Fold": 56, "Mark1": 2.8, "Mark2": 12.6}, {"Fold": 57, "Mark1": 2.8, "Mark2": 12.7}, {"Fold": 58, "Mark1": 2.8, "Mark2": 12.8}, {"Fold": 59, "Mark1": 2.8, "Mark2": 12.9}, {"Fold": 60, "Mark1": 2.8, "Mark2": 13.0}, {"Fold": 61, "Mark1": 2.9, "Mark2": 13.1}, {"Fold": 62, "Mark1": 2.9, "Mark2": 13.2}, {"Fold": 63, "Mark1": 2.9, "Mark2": 13.3}, {"Fold": 64, "Mark1": 2.9, "Mark2": 13.4}, {"Fold": 65, "Mark1": 3.0, "Mark2": 13.4}, {"Fold": 66, "Mark1": 3.0, "Mark2": 13.5}, {"Fold": 67, "Mark1": 3.0, "Mark2": 13.7}, {"Fold": 68, "Mark1": 3.1, "Mark2": 13.7}, {"Fold": 69, "Mark1": 3.1, "Mark2": 13.8}, {"Fold": 70, "Mark1": 3.1, "Mark2": 13.9}, {"Fold": 71, "Mark1": 3.2, "Mark2": 14.0}, {"Fold": 72, "Mark1": 3.2, "Mark2": 14.1}, {"Fold": 73, "Mark1": 3.3, "Mark2": 14.2}, {"Fold": 74, "Mark1": 3.3, "Mark2": 14.3}, {"Fold": 75, "Mark1": 3.4, "Mark2": 14.4}, {"Fold": 76, "Mark1": 3.4, "Mark2": 14.6}, {"Fold": 77, "Mark1": 3.5, "Mark2": 14.6}, {"Fold": 78, "Mark1": 3.6, "Mark2": 14.8}, {"Fold": 79, "Mark1": 3.6, "Mark2": 14.9}, {"Fold": 80, "Mark1": 3.7, "Mark2": 15.0}, {"Fold": 81, "Mark1": 3.8, "Mark2": 15.1}, {"Fold": 82, "Mark1": 3.9, "Mark2": 15.2}, {"Fold": 83, "Mark1": 4.0, "Mark2": 15.4}, {"Fold": 84, "Mark1": 4.1, "Mark2": 15.5}, {"Fold": 85, "Mark1": 4.2, "Mark2": 15.6}, {"Fold": 86, "Mark1": 4.3, "Mark2": 15.8}, {"Fold": 87, "Mark1": 4.4, "Mark2": 15.9}, {"Fold": 88, "Mark1": 4.6, "Mark2": 16.1}, {"Fold": 89, "Mark1": 4.7, "Mark2": 16.2}, {"Fold": 90, "Mark1": 4.8, "Mark2": 16.3}, {"Fold": 91, "Mark1": 4.8, "Mark2": 16.3}, {"Fold": 92, "Mark1": 4.7, "Mark2": 16.2}, {"Fold": 93, "Mark1": 4.6, "Mark2": 16.1}, {"Fold": 94, "Mark1": 4.4, "Mark2": 15.9}, {"Fold": 95, "Mark1": 4.3, "Mark2": 15.8}, {"Fold": 96, "Mark1": 4.2, "Mark2": 15.6}, {"Fold": 97, "Mark1": 4.1, "Mark2": 15.5}, {"Fold": 98, "Mark1": 4.0, "Mark2": 15.4}, {"Fold": 99, "Mark1": 3.9, "Mark2": 15.2}, {"Fold": 100, "Mark1": 3.8, "Mark2": 15.1}, {"Fold": 101, "Mark1": 3.7, "Mark2": 15.0}, {"Fold": 102, "Mark1": 3.6, "Mark2": 14.9}, {"Fold": 103, "Mark1": 3.6, "Mark2": 14.8}, {"Fold": 104, "Mark1": 3.5, "Mark2": 14.6}, {"Fold": 105, "Mark1": 3.4, "Mark2": 14.6}, {"Fold": 106, "Mark1": 3.4, "Mark2": 14.4}, {"Fold": 107, "Mark1": 3.3, "Mark2": 14.3}, {"Fold": 108, "Mark1": 3.3, "Mark2": 14.2}, {"Fold": 109, "Mark1": 3.2, "Mark2": 14.1}, {"Fold": 110, "Mark1": 3.2, "Mark2": 14.0}, {"Fold": 111, "Mark1": 3.1, "Mark2": 13.9}, {"Fold": 112, "Mark1": 3.1, "Mark2": 13.8}, {"Fold": 113, "Mark1": 3.1, "Mark2": 13.7}, {"Fold": 114, "Mark1": 3.0, "Mark2": 13.7}, {"Fold": 115, "Mark1": 3.0, "Mark2": 13.5}, {"Fold": 116, "Mark1": 3.0, "Mark2": 13.4}, {"Fold": 117, "Mark1": 2.9, "Mark2": 13.4}, {"Fold": 118, "Mark1": 2.9, "Mark2": 13.3}, {"Fold": 119, "Mark1": 2.9, "Mark2": 13.2}, {"Fold": 120, "Mark1": 2.9, "Mark2": 13.1}, {"Fold": 121, "Mark1": 2.8, "Mark2": 13.0}, {"Fold": 122, "Mark1": 2.8, "Mark2": 12.9}, {"Fold": 123, "Mark1": 2.8, "Mark2": 12.8}, {"Fold": 124, "Mark1": 2.8, "Mark2": 12.7}, {"Fold": 125, "Mark1": 2.8, "Mark2": 12.6}, {"Fold": 126, "Mark1": 2.8, "Mark2": 12.5}, {"Fold": 127, "Mark1": 2.8, "Mark2": 12.5}, {"Fold": 128, "Mark1": 2.8, "Mark2": 12.4}, {"Fold": 129, "Mark1": 2.8, "Mark2": 12.3}, {"Fold": 130, "Mark1": 2.7, "Mark2": 12.2}, {"Fold": 131, "Mark1": 2.7, "Mark2": 12.1}, {"Fold": 132, "Mark1": 2.7, "Mark2": 12.0}, {"Fold": 133, "Mark1": 2.7, "Mark2": 11.9}, {"Fold": 134, "Mark1": 2.7, "Mark2": 11.9}, {"Fold": 135, "Mark1": 2.7, "Mark2": 11.8}, {"Fold": 136, "Mark1": 2.7, "Mark2": 11.7}, {"Fold": 137, "Mark1": 2.8, "Mark2": 11.6}, {"Fold": 138, "Mark1": 2.8, "Mark2": 11.5}, {"Fold": 139, "Mark1": 2.8, "Mark2": 11.5}, {"Fold": 140, "Mark1": 2.8, "Mark2": 11.4}, {"Fold": 141, "Mark1": 2.8, "Mark2": 11.3}, {"Fold": 142, "Mark1": 2.8, "Mark2": 11.2}, {"Fold": 143, "Mark1": 2.8, "Mark2": 11.1}, {"Fold": 144, "Mark1": 2.8, "Mark2": 11.0}, {"Fold": 145, "Mark1": 2.8, "Mark2": 10.9}, {"Fold": 146, "Mark1": 2.9, "Mark2": 10.9}, {"Fold": 147, "Mark1": 2.9, "Mark2": 10.8}, {"Fold": 148, "Mark1": 2.9, "Mark2": 10.7}, {"Fold": 149, "Mark1": 2.9, "Mark2": 10.6}, {"Fold": 150, "Mark1": 2.9, "Mark2": 10.5}, {"Fold": 151, "Mark1": 3.0, "Mark2": 10.4}, {"Fold": 152, "Mark1": 3.0, "Mark2": 10.4}, {"Fold": 153, "Mark1": 3.0, "Mark2": 10.3}, {"Fold": 154, "Mark1": 3.1, "Mark2": 10.2}, {"Fold": 155, "Mark1": 3.1, "Mark2": 10.1}, {"Fold": 156, "Mark1": 3.1, "Mark2": 10.0}, {"Fold": 157, "Mark1": 3.2, "Mark2": 9.9}, {"Fold": 158, "Mark1": 3.2, "Mark2": 9.8}, {"Fold": 159, "Mark1": 3.3, "Mark2": 9.7}, {"Fold": 160, "Mark1": 3.3, "Mark2": 9.6}, {"Fold": 161, "Mark1": 3.4, "Mark2": 9.5}, {"Fold": 162, "Mark1": 3.4, "Mark2": 9.4}, {"Fold": 163, "Mark1": 3.5, "Mark2": 9.3}, {"Fold": 164, "Mark1": 3.5, "Mark2": 9.2}, {"Fold": 165, "Mark1": 3.6, "Mark2": 9.1}, {"Fold": 166, "Mark1": 3.6, "Mark2": 9.0}, {"Fold": 167, "Mark1": 3.7, "Mark2": 8.9}, {"Fold": 168, "Mark1": 3.8, "Mark2": 8.8}, {"Fold": 169, "Mark1": 3.9, "Mark2": 8.6}, {"Fold": 170, "Mark1": 3.9, "Mark2": 8.5}, {"Fold": 171, "Mark1": 4.0, "Mark2": 8.4}, {"Fold": 172, "Mark1": 4.1, "Mark2": 8.3}, {"Fold": 173, "Mark1": 4.2, "Mark2": 8.1}, {"Fold": 174, "Mark1": 4.3, "Mark2": 8.0}, {"Fold": 175, "Mark1": 4.4, "Mark2": 7.8}, {"Fold": 176, "Mark1": 4.6, "Mark2": 7.6}, {"Fold": 177, "Mark1": 4.7, "Mark2": 7.4}, {"Fold": 178, "Mark1": 4.9, "Mark2": 7.2}, {"Fold": 179, "Mark1": 5.1, "Mark2": 6.9}, {"Fold": 180, "Mark1": 5.6, "Mark2": 6.4}];
+
+const DATASETS = {
+  19: { height: 19, pagesNeeded: 362, folds: [{"Fold": 1, "Mark1": 5.6, "Mark2": 6.4}, {"Fold": 2, "Mark1": 5.1, "Mark2": 6.9}, {"Fold": 3, "Mark1": 4.9, "Mark2": 7.2}, {"Fold": 4, "Mark1": 4.7, "Mark2": 7.4}, {"Fold": 5, "Mark1": 4.6, "Mark2": 7.6}, {"Fold": 6, "Mark1": 4.4, "Mark2": 7.8}, {"Fold": 7, "Mark1": 4.3, "Mark2": 8.0}, {"Fold": 8, "Mark1": 4.2, "Mark2": 8.1}, {"Fold": 9, "Mark1": 4.1, "Mark2": 8.3}, {"Fold": 10, "Mark1": 4.0, "Mark2": 8.4}, {"Fold": 11, "Mark1": 3.9, "Mark2": 8.5}, {"Fold": 12, "Mark1": 3.9, "Mark2": 8.6}, {"Fold": 13, "Mark1": 3.8, "Mark2": 8.8}, {"Fold": 14, "Mark1": 3.7, "Mark2": 8.9}, {"Fold": 15, "Mark1": 3.6, "Mark2": 9.0}, {"Fold": 16, "Mark1": 3.6, "Mark2": 9.1}, {"Fold": 17, "Mark1": 3.5, "Mark2": 9.2}, {"Fold": 18, "Mark1": 3.5, "Mark2": 9.3}, {"Fold": 19, "Mark1": 3.4, "Mark2": 9.4}, {"Fold": 20, "Mark1": 3.4, "Mark2": 9.5}, {"Fold": 21, "Mark1": 3.3, "Mark2": 9.6}, {"Fold": 22, "Mark1": 3.3, "Mark2": 9.7}, {"Fold": 23, "Mark1": 3.2, "Mark2": 9.8}, {"Fold": 24, "Mark1": 3.2, "Mark2": 9.9}, {"Fold": 25, "Mark1": 3.1, "Mark2": 10.0}, {"Fold": 26, "Mark1": 3.1, "Mark2": 10.1}, {"Fold": 27, "Mark1": 3.1, "Mark2": 10.2}, {"Fold": 28, "Mark1": 3.0, "Mark2": 10.3}, {"Fold": 29, "Mark1": 3.0, "Mark2": 10.4}, {"Fold": 30, "Mark1": 3.0, "Mark2": 10.4}, {"Fold": 31, "Mark1": 2.9, "Mark2": 10.5}, {"Fold": 32, "Mark1": 2.9, "Mark2": 10.6}, {"Fold": 33, "Mark1": 2.9, "Mark2": 10.7}, {"Fold": 34, "Mark1": 2.9, "Mark2": 10.8}, {"Fold": 35, "Mark1": 2.9, "Mark2": 10.9}, {"Fold": 36, "Mark1": 2.8, "Mark2": 10.9}, {"Fold": 37, "Mark1": 2.8, "Mark2": 11.0}, {"Fold": 38, "Mark1": 2.8, "Mark2": 11.1}, {"Fold": 39, "Mark1": 2.8, "Mark2": 11.2}, {"Fold": 40, "Mark1": 2.8, "Mark2": 11.3}, {"Fold": 41, "Mark1": 2.8, "Mark2": 11.4}, {"Fold": 42, "Mark1": 2.8, "Mark2": 11.5}, {"Fold": 43, "Mark1": 2.8, "Mark2": 11.5}, {"Fold": 44, "Mark1": 2.8, "Mark2": 11.6}, {"Fold": 45, "Mark1": 2.7, "Mark2": 11.7}, {"Fold": 46, "Mark1": 2.7, "Mark2": 11.8}, {"Fold": 47, "Mark1": 2.7, "Mark2": 11.9}, {"Fold": 48, "Mark1": 2.7, "Mark2": 11.9}, {"Fold": 49, "Mark1": 2.7, "Mark2": 12.0}, {"Fold": 50, "Mark1": 2.7, "Mark2": 12.1}, {"Fold": 51, "Mark1": 2.7, "Mark2": 12.2}, {"Fold": 52, "Mark1": 2.8, "Mark2": 12.3}, {"Fold": 53, "Mark1": 2.8, "Mark2": 12.4}, {"Fold": 54, "Mark1": 2.8, "Mark2": 12.5}, {"Fold": 55, "Mark1": 2.8, "Mark2": 12.5}, {"Fold": 56, "Mark1": 2.8, "Mark2": 12.6}, {"Fold": 57, "Mark1": 2.8, "Mark2": 12.7}, {"Fold": 58, "Mark1": 2.8, "Mark2": 12.8}, {"Fold": 59, "Mark1": 2.8, "Mark2": 12.9}, {"Fold": 60, "Mark1": 2.8, "Mark2": 13.0}, {"Fold": 61, "Mark1": 2.9, "Mark2": 13.1}, {"Fold": 62, "Mark1": 2.9, "Mark2": 13.2}, {"Fold": 63, "Mark1": 2.9, "Mark2": 13.3}, {"Fold": 64, "Mark1": 2.9, "Mark2": 13.4}, {"Fold": 65, "Mark1": 3.0, "Mark2": 13.4}, {"Fold": 66, "Mark1": 3.0, "Mark2": 13.5}, {"Fold": 67, "Mark1": 3.0, "Mark2": 13.7}, {"Fold": 68, "Mark1": 3.1, "Mark2": 13.7}, {"Fold": 69, "Mark1": 3.1, "Mark2": 13.8}, {"Fold": 70, "Mark1": 3.1, "Mark2": 13.9}, {"Fold": 71, "Mark1": 3.2, "Mark2": 14.0}, {"Fold": 72, "Mark1": 3.2, "Mark2": 14.1}, {"Fold": 73, "Mark1": 3.3, "Mark2": 14.2}, {"Fold": 74, "Mark1": 3.3, "Mark2": 14.3}, {"Fold": 75, "Mark1": 3.4, "Mark2": 14.4}, {"Fold": 76, "Mark1": 3.4, "Mark2": 14.6}, {"Fold": 77, "Mark1": 3.5, "Mark2": 14.6}, {"Fold": 78, "Mark1": 3.6, "Mark2": 14.8}, {"Fold": 79, "Mark1": 3.6, "Mark2": 14.9}, {"Fold": 80, "Mark1": 3.7, "Mark2": 15.0}, {"Fold": 81, "Mark1": 3.8, "Mark2": 15.1}, {"Fold": 82, "Mark1": 3.9, "Mark2": 15.2}, {"Fold": 83, "Mark1": 4.0, "Mark2": 15.4}, {"Fold": 84, "Mark1": 4.1, "Mark2": 15.5}, {"Fold": 85, "Mark1": 4.2, "Mark2": 15.6}, {"Fold": 86, "Mark1": 4.3, "Mark2": 15.8}, {"Fold": 87, "Mark1": 4.4, "Mark2": 15.9}, {"Fold": 88, "Mark1": 4.6, "Mark2": 16.1}, {"Fold": 89, "Mark1": 4.7, "Mark2": 16.2}, {"Fold": 90, "Mark1": 4.8, "Mark2": 16.3}, {"Fold": 91, "Mark1": 4.8, "Mark2": 16.3}, {"Fold": 92, "Mark1": 4.7, "Mark2": 16.2}, {"Fold": 93, "Mark1": 4.6, "Mark2": 16.1}, {"Fold": 94, "Mark1": 4.4, "Mark2": 15.9}, {"Fold": 95, "Mark1": 4.3, "Mark2": 15.8}, {"Fold": 96, "Mark1": 4.2, "Mark2": 15.6}, {"Fold": 97, "Mark1": 4.1, "Mark2": 15.5}, {"Fold": 98, "Mark1": 4.0, "Mark2": 15.4}, {"Fold": 99, "Mark1": 3.9, "Mark2": 15.2}, {"Fold": 100, "Mark1": 3.8, "Mark2": 15.1}, {"Fold": 101, "Mark1": 3.7, "Mark2": 15.0}, {"Fold": 102, "Mark1": 3.6, "Mark2": 14.9}, {"Fold": 103, "Mark1": 3.6, "Mark2": 14.8}, {"Fold": 104, "Mark1": 3.5, "Mark2": 14.6}, {"Fold": 105, "Mark1": 3.4, "Mark2": 14.6}, {"Fold": 106, "Mark1": 3.4, "Mark2": 14.4}, {"Fold": 107, "Mark1": 3.3, "Mark2": 14.3}, {"Fold": 108, "Mark1": 3.3, "Mark2": 14.2}, {"Fold": 109, "Mark1": 3.2, "Mark2": 14.1}, {"Fold": 110, "Mark1": 3.2, "Mark2": 14.0}, {"Fold": 111, "Mark1": 3.1, "Mark2": 13.9}, {"Fold": 112, "Mark1": 3.1, "Mark2": 13.8}, {"Fold": 113, "Mark1": 3.1, "Mark2": 13.7}, {"Fold": 114, "Mark1": 3.0, "Mark2": 13.7}, {"Fold": 115, "Mark1": 3.0, "Mark2": 13.5}, {"Fold": 116, "Mark1": 3.0, "Mark2": 13.4}, {"Fold": 117, "Mark1": 2.9, "Mark2": 13.4}, {"Fold": 118, "Mark1": 2.9, "Mark2": 13.3}, {"Fold": 119, "Mark1": 2.9, "Mark2": 13.2}, {"Fold": 120, "Mark1": 2.9, "Mark2": 13.1}, {"Fold": 121, "Mark1": 2.8, "Mark2": 13.0}, {"Fold": 122, "Mark1": 2.8, "Mark2": 12.9}, {"Fold": 123, "Mark1": 2.8, "Mark2": 12.8}, {"Fold": 124, "Mark1": 2.8, "Mark2": 12.7}, {"Fold": 125, "Mark1": 2.8, "Mark2": 12.6}, {"Fold": 126, "Mark1": 2.8, "Mark2": 12.5}, {"Fold": 127, "Mark1": 2.8, "Mark2": 12.5}, {"Fold": 128, "Mark1": 2.8, "Mark2": 12.4}, {"Fold": 129, "Mark1": 2.8, "Mark2": 12.3}, {"Fold": 130, "Mark1": 2.7, "Mark2": 12.2}, {"Fold": 131, "Mark1": 2.7, "Mark2": 12.1}, {"Fold": 132, "Mark1": 2.7, "Mark2": 12.0}, {"Fold": 133, "Mark1": 2.7, "Mark2": 11.9}, {"Fold": 134, "Mark1": 2.7, "Mark2": 11.9}, {"Fold": 135, "Mark1": 2.7, "Mark2": 11.8}, {"Fold": 136, "Mark1": 2.7, "Mark2": 11.7}, {"Fold": 137, "Mark1": 2.8, "Mark2": 11.6}, {"Fold": 138, "Mark1": 2.8, "Mark2": 11.5}, {"Fold": 139, "Mark1": 2.8, "Mark2": 11.5}, {"Fold": 140, "Mark1": 2.8, "Mark2": 11.4}, {"Fold": 141, "Mark1": 2.8, "Mark2": 11.3}, {"Fold": 142, "Mark1": 2.8, "Mark2": 11.2}, {"Fold": 143, "Mark1": 2.8, "Mark2": 11.1}, {"Fold": 144, "Mark1": 2.8, "Mark2": 11.0}, {"Fold": 145, "Mark1": 2.8, "Mark2": 10.9}, {"Fold": 146, "Mark1": 2.9, "Mark2": 10.9}, {"Fold": 147, "Mark1": 2.9, "Mark2": 10.8}, {"Fold": 148, "Mark1": 2.9, "Mark2": 10.7}, {"Fold": 149, "Mark1": 2.9, "Mark2": 10.6}, {"Fold": 150, "Mark1": 2.9, "Mark2": 10.5}, {"Fold": 151, "Mark1": 3.0, "Mark2": 10.4}, {"Fold": 152, "Mark1": 3.0, "Mark2": 10.4}, {"Fold": 153, "Mark1": 3.0, "Mark2": 10.3}, {"Fold": 154, "Mark1": 3.1, "Mark2": 10.2}, {"Fold": 155, "Mark1": 3.1, "Mark2": 10.1}, {"Fold": 156, "Mark1": 3.1, "Mark2": 10.0}, {"Fold": 157, "Mark1": 3.2, "Mark2": 9.9}, {"Fold": 158, "Mark1": 3.2, "Mark2": 9.8}, {"Fold": 159, "Mark1": 3.3, "Mark2": 9.7}, {"Fold": 160, "Mark1": 3.3, "Mark2": 9.6}, {"Fold": 161, "Mark1": 3.4, "Mark2": 9.5}, {"Fold": 162, "Mark1": 3.4, "Mark2": 9.4}, {"Fold": 163, "Mark1": 3.5, "Mark2": 9.3}, {"Fold": 164, "Mark1": 3.5, "Mark2": 9.2}, {"Fold": 165, "Mark1": 3.6, "Mark2": 9.1}, {"Fold": 166, "Mark1": 3.6, "Mark2": 9.0}, {"Fold": 167, "Mark1": 3.7, "Mark2": 8.9}, {"Fold": 168, "Mark1": 3.8, "Mark2": 8.8}, {"Fold": 169, "Mark1": 3.9, "Mark2": 8.6}, {"Fold": 170, "Mark1": 3.9, "Mark2": 8.5}, {"Fold": 171, "Mark1": 4.0, "Mark2": 8.4}, {"Fold": 172, "Mark1": 4.1, "Mark2": 8.3}, {"Fold": 173, "Mark1": 4.2, "Mark2": 8.1}, {"Fold": 174, "Mark1": 4.3, "Mark2": 8.0}, {"Fold": 175, "Mark1": 4.4, "Mark2": 7.8}, {"Fold": 176, "Mark1": 4.6, "Mark2": 7.6}, {"Fold": 177, "Mark1": 4.7, "Mark2": 7.4}, {"Fold": 178, "Mark1": 4.9, "Mark2": 7.2}, {"Fold": 179, "Mark1": 5.1, "Mark2": 6.9}, {"Fold": 180, "Mark1": 5.6, "Mark2": 6.4}] },
+  21: { height: 21, pagesNeeded: null, folds: null }, // add later
+  23: { height: 23, pagesNeeded: null, folds: null }  // add later
+};
 
 function clampInt(v) {
   const n = parseInt(String(v).trim(), 10);
@@ -234,36 +238,46 @@ function clampInt(v) {
 }
 
 function makeOdd(n) {
-  if (n % 2 === 0) return n + 1;
-  return n;
+  return (n % 2 === 0) ? (n + 1) : n;
 }
 
-function computeStartPage(bookPages, pagesNeeded, align) {
-  if (!bookPages || bookPages < pagesNeeded) {
-    return 1;
-  }
+function getSelectedDataset() {
+  const size = parseInt(document.getElementById("size").value, 10);
+  return DATASETS[size];
+}
+
+function computeCenteredStartPage(bookPages, pagesNeeded) {
+  if (!bookPages || !pagesNeeded || bookPages < pagesNeeded) return 1;
   const extra = bookPages - pagesNeeded;
-
-  if (align === "top") return 1;
-  if (align === "bottom") {
-    let start = extra + 1;
-    start = makeOdd(start);
-    if (start + pagesNeeded - 1 > bookPages) start -= 2;
-    return Math.max(1, start);
-  }
-
   let start = Math.floor(extra / 2) + 1;
   start = makeOdd(start);
   if (start + pagesNeeded - 1 > bookPages) start -= 2;
   return Math.max(1, start);
 }
 
-function renderTable(startPageOdd) {
+function setStatus(msg) {
+  document.getElementById("status").textContent = msg;
+}
+
+function renderTable(dataset, startPageOdd) {
   const tbody = document.querySelector("#tbl tbody");
   tbody.innerHTML = "";
-  for (const row of foldsData) {
+
+  if (!dataset?.folds) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 4;
+    td.style.padding = "14px";
+    td.innerHTML = "This size is not loaded yet. Please select <b>19 cm</b> for now.";
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+    return;
+  }
+
+  for (const row of dataset.folds) {
     const fold = row.Fold;
     const page = startPageOdd + (fold - 1) * 2;
+
     const tr = document.createElement("tr");
 
     const tdFold = document.createElement("td");
@@ -287,60 +301,81 @@ function renderTable(startPageOdd) {
   }
 }
 
-function updateKPIs(startPageOdd, bookPages, pagesNeeded) {
+function updateHeader(dataset) {
+  document.getElementById("patternTitle").textContent = patternName;
+  document.getElementById("sizePill").textContent = dataset.height + " cm";
+  document.title = "Fold With Soul • " + patternName + " • " + dataset.height + " cm";
+}
+
+function updateKPIs(dataset, startPageOdd, bookPages) {
+  const foldsCount = dataset?.folds ? dataset.folds.length : 0;
+  document.getElementById("kpiFolds").textContent = dataset?.folds ? foldsCount : "—";
+  document.getElementById("kpiPagesNeeded").textContent = dataset?.pagesNeeded ? dataset.pagesNeeded : "—";
+
   document.getElementById("kpiStart").textContent = startPageOdd ? startPageOdd : "—";
-  const endPage = startPageOdd ? (startPageOdd + pagesNeeded - 1) : null;
+  const endPage = (dataset?.pagesNeeded && startPageOdd) ? (startPageOdd + dataset.pagesNeeded - 1) : null;
   document.getElementById("kpiEnd").textContent = endPage ? endPage : "—";
 
-  const status = document.getElementById("status");
-  if (bookPages && bookPages >= pagesNeeded) {
-    status.textContent = "Loaded: " + foldsData.length + " folds • Centered within your book (" + bookPages + " pages)";
+  if (!dataset?.folds) {
+    setStatus("Select 19 cm — other sizes not loaded yet");
+    return;
+  }
+
+  if (bookPages && bookPages >= dataset.pagesNeeded) {
+    setStatus("Loaded: " + foldsCount + " folds • Centered within your book (" + bookPages + " pages)");
   } else if (bookPages) {
-    status.textContent = "Loaded: " + foldsData.length + " folds • Your book looks too small (" + bookPages + " pages). Showing default start.";
+    setStatus("Loaded: " + foldsCount + " folds • Your book looks too small (" + bookPages + " pages). Showing default start.");
   } else {
-    status.textContent = "Loaded: " + foldsData.length + " folds • Default start page (1)";
+    setStatus("Loaded: " + foldsCount + " folds • Default start page (1)");
   }
 }
 
 function apply() {
-  const bookPages = clampInt(document.getElementById("bookPages").value);
-  const align = document.getElementById("align").value;
-  const pagesNeeded = 362;
+  const dataset = getSelectedDataset();
+  updateHeader(dataset);
 
-  const start = computeStartPage(bookPages, pagesNeeded, align);
-  renderTable(start);
-  updateKPIs(start, bookPages, pagesNeeded);
+  const bookPages = clampInt(document.getElementById("bookPages").value);
+  const start = computeCenteredStartPage(bookPages, dataset.pagesNeeded);
+
+  renderTable(dataset, start);
+  updateKPIs(dataset, start, bookPages);
 }
 
 document.getElementById("btnApply").addEventListener("click", apply);
 document.getElementById("btnReset").addEventListener("click", () => {
   document.getElementById("bookPages").value = "";
-  document.getElementById("align").value = "center";
+  document.getElementById("size").value = "19";
   apply();
 });
+document.getElementById("size").addEventListener("change", apply);
 
 document.getElementById("btnPrint").addEventListener("click", () => window.print());
 
 document.getElementById("btnDownload").addEventListener("click", () => {
+  const dataset = getSelectedDataset();
+  if (!dataset?.folds) {
+    alert("This size is not loaded yet. Please select 19 cm.");
+    return;
+  }
+
   const bookPages = clampInt(document.getElementById("bookPages").value);
-  const align = document.getElementById("align").value;
-  const pagesNeeded = 362;
-  const start = computeStartPage(bookPages, pagesNeeded, align);
+  const start = computeCenteredStartPage(bookPages, dataset.pagesNeeded);
 
   const header = ["Fold","Page","Mark1","Mark2"];
   const lines = [header.join(",")];
 
-  for (const row of foldsData) {
+  for (const row of dataset.folds) {
     const fold = row.Fold;
     const page = start + (fold - 1) * 2;
     lines.push([fold, page, row.Mark1, row.Mark2].join(","));
   }
 
-  const blob = new Blob([lines.join("\n")], {type:"text/csv;charset=utf-8"});
+  const blob = new Blob([lines.join("
+")], {type:"text/csv;charset=utf-8"});
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = patternName + "_19cm_table.csv";
+  a.download = patternName + "_" + dataset.height + "cm_table.csv";
   document.body.appendChild(a);
   a.click();
   a.remove();
