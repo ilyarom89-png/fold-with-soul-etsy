@@ -51,6 +51,16 @@ th {text-align:left; color:#9fb3ff}
 <body>
 <div class="container">
   <h1>Fold With Soul Calculator — Heart</h1>
+
+<img src="heart_preview.jpg" alt="Heart book folding pattern" style="
+max-width:360px;
+width:100%;
+display:block;
+margin:20px auto;
+border-radius:14px;
+box-shadow:0 10px 40px rgba(0,0,0,.4);
+"/>
+
   <div class="card">
     <p>Pattern: <b>Heart</b> · 180 folds · minimum <b>360 pages</b> · always centered</p>
     <label>Book height:</label><br/>
@@ -61,7 +71,7 @@ th {text-align:left; color:#9fb3ff}
     </select><br/><br/>
     <label>My book total pages:</label><br/>
     <input id="pages" placeholder="e.g. 389"/><br/><br/>
-    <button onclick="apply()">Apply</button>
+    <button onclick="apply()">Apply</button> <button onclick="window.print()">Save as PDF</button>
     <p id="msg"></p>
     <p>
       Start page (odd): <b id="start">—</b><br/>
